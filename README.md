@@ -20,7 +20,7 @@ Problems which may arise:
 MVP:
 - Atleast a timeline with investment done per company (big ones probaly have multiple investment). 
 
-![alt](images/schets-proposal.jpg)
+![alt](images/schets-proposal.JPG)
 
 
 
