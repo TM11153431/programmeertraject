@@ -3,14 +3,26 @@
 <head>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="stylesheet.css" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
+
 <body>
 <div class = "container">
-<div id = "map">
-</div>
-<div id = "piechart">
-</div>
+	<div id = "map">
+		<select id ='dropdown'>
+		  <option value="number_of_reviews">Number of reviews</option>
+		  <option value="price">Price/option>
+		  <option value="mercedes">Mercedes</option>
+		  <option value="audi">Audi</option>
+		</select>
+	</div>
+
+	<div id = "histogram">
+	</div>
+	<div id = "bottom">
+	</div>
 </div>
 <script src="main.js"></script>
 </body>
