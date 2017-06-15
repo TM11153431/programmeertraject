@@ -7,7 +7,7 @@ Voor de programmeeropdracht van de minorprogrammeren ga ik een dataset visualise
 
 De visualisatie richt zich voornamelijk op het geografische aspect, dit geeft de gebruiker snel een goed inzicht in de data. Daarnaast biedt de visualisatie de mogelijkheid om buurten met elkaar te rangschikken dus te vergelijken door middel van een histogram. Om nog verder in te gaten op data per buurt is er ook nog diepere data beschikbaar in de vorm van een andere visualisatie specifiek voor 1 buurt. 
 
-##Onderdelen App:
+## Onderdelen App:
 
 De app is onderverdeeld in drie onderdelen: 
 - kaart Amsterdam
@@ -26,10 +26,10 @@ De kaart 'Amsterdam' en 'histogram' laten dezelfde data zien. De piecharts aan d
 
 - Niet genoeg data om de visualisatie interessant te maken. 
 
-##MVP:
+## MVP:
 Minimaal de kaar van Amsterdam, de histogram en de twee Piecharts alleen gelinked aan elkaar en interactief. Oftewel de minimale eisen voor de opdracht. Extra is meer data toevoegen en de visualisatie zelf interessanter maken qua interactiviteit of uiterlijk. 
 
-![alt](images/IMG_2075.JPG.JPG)
+![alt](images/IMG_2075.JPG)
 
 
 
