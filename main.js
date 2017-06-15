@@ -1,12 +1,12 @@
 var canvas = d3.select('#map').append('svg')
-	.attr('width', 1170)
-	.attr('id', 'kaart')
+	.attr('width', 900)
+	.attr('id', 'svg_kaart')
 
-var projection = d3.geo.mercator().scale(150000).translate([-12350, 162000]);
+var projection = d3.geo.mercator().scale(125800).translate([-10370, 135700]);
 var path = d3.geo.path().projection(projection);
 
 // **********
-// FUNCTIONS
+// FUNCTIONs
 // **********
 
 function updateData(data, group, key) {
@@ -20,8 +20,6 @@ function updateData(data, group, key) {
 		.attr('fill', function(d) {
 			postcode_geo_data = d.properties.postcode
 			data_per_buurt = data[postcode_geo_data]
-			console.log(data_per_buurt)
-			console.log(key)
 			// als er een plek is zonder postcode
 			if (data_per_buurt === undefined) {
 				var red = '#FF0000'
@@ -36,6 +34,51 @@ function updateData(data, group, key) {
 		.attr('id', function(d){ return d.properties.buurtcom00})
 }
 
+function histogram(data, group, key) {
+
+	// [key, value] --> sorted + show only top 20 values
+	var values = Object.keys(data).map(function(sleutel){return [sleutel, data[sleutel][key]]})
+		.sort(function(a,b) { return a[1] - b[1]});
+	
+	var values_keys = values.map(function(i){ return i[0]}).slice(0, 30);
+	var values_values = values.map(function(i){ return i[1]}).slice(0, 30);
+	
+	// margins
+	var margin = {top:10, left: 20, right:20, bottom: 20};
+	var height = 500;
+	var width = 870;
+
+	var y_scale = d3.scale.linear().domain([d3.min(values_values), d3.max(values_values)]).range([0, height]);
+	var x_scale = d3.scale.ordinal().domain(values_keys).rangeRoundPoints([0,width])
+
+
+	//define svg & g 
+	var svg = d3.select('#histogram')
+		.append('svg')
+		.attr('width', width)
+		.attr('height', height)
+	var g = svg.append('g')
+
+	var bars = g.selectAll('g')
+		.data(values_keys)
+		.enter()
+		.append('div')
+		.classed('bin', true)
+		.style('position', 'relative')
+		.style('x', function(key) { return x_scale(key)})
+		.style('width', 20)
+		.style('color', 'black')
+		.style('height', function(d){return y_scale(data[d])})
+		.style('height', function(key){ return y_scale(data[key])})
+		.attr('transform', "translate('0', '0')")
+		.attr('transform-origin', '50% 50%')
+
+}
+
+// ****************
+// CALLBACKs
+// *****************
+
 
 d3.json('../data/buurten_amsterdam_wsg84_stadsdelen_zip.geojson', function (data_geo) {
 	// maak groep ('g') en bind data 
@@ -45,13 +88,18 @@ d3.json('../data/buurten_amsterdam_wsg84_stadsdelen_zip.geojson', function (data
 		.append('g');
 
 	d3.json('../data/price_reviews.json', function(data_buurten) {
+
+		// KAART
+		updateData(data_buurten, group, 'price');
 		d3.select('#dropdown')
 			.on('change', function() {
 				var key = d3.select(this)[0][0].value
-				console.log(key)
 				updateData(data_buurten, group, key);
 
 		});
+
+		// HISTOGRAM
+		histogram(data_buurten, group, 'price');
 
 	});
 

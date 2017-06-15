@@ -12,7 +12,10 @@ Morgen:
  - histogram maken
  - interactiviteit tussen histogram & kaart?? 
 
- 
+ ### 14 juni 2017
+Basis voor histogram gemaakt, nog over is het tekenen van de assen en de rectangles. Moest nog even goed kijken hoe je nu precies een rectangle goed tekend. Daarnaast een simpele layout gemaakt met 3 vlakken voor de kaart, de histogram en twee andere visualisaties aan de onderkant. Voor de volgende dag afmaken van de histogram!
+
+
 
 
 
