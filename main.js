@@ -1,15 +1,29 @@
-var canvas = d3.select('#map').append('svg')
-	.attr('width', 900)
-	.attr('id', 'svg_kaart')
+var svg_kaart = d3.select('#map').append('svg')
+	.attr('width', 600)
+	.attr('height', 390);
 
-var projection = d3.geo.mercator().scale(125800).translate([-10370, 135700]);
+var svg_histogram = d3.select('#histogram').append('svg')
+	.attr('width', 400)
+	.attr('height', 150);
+
+var svg_piechart1 = d3.select('#bottom').append('svg').attr('id', 'piechart1')
+var svg_piechart2 = d3.select('#bottom').append('svg').attr('id', 'piechart2')
+
+var scale = 0.70
+var projection = d3.geo.mercator().scale(125800*scale).translate([-10350*scale, 135670*scale]);
 var path = d3.geo.path().projection(projection);
 
 // **********
 // FUNCTIONs
 // **********
 
-function updateData(data, group, key) {
+function kaart(data, data_geo, svg_kaart, key) {
+	// maak groep ('g') en bind data
+	var group = svg_kaart.selectAll('g')
+		.data(data_geo.features)
+		.enter()
+		.append('g');
+
 	array_key_data = Object.values(data).map(function(i){return i[key]})
 	var max = Math.max.apply(Math, array_key_data)
 	var min = Math.min.apply(Math, array_key_data)
@@ -34,45 +48,83 @@ function updateData(data, group, key) {
 		.attr('id', function(d){ return d.properties.buurtcom00})
 }
 
-function histogram(data, group, key) {
+function histogram(data, svg_histogram, key) {
 
-	// [key, value] --> sorted + show only top 20 values
-	var values = Object.keys(data).map(function(sleutel){return [sleutel, data[sleutel][key]]})
-		.sort(function(a,b) { return a[1] - b[1]});
-	
-	var values_keys = values.map(function(i){ return i[0]}).slice(0, 30);
-	var values_values = values.map(function(i){ return i[1]}).slice(0, 30);
-	
-	// margins
-	var margin = {top:10, left: 20, right:20, bottom: 20};
-	var height = 500;
-	var width = 870;
+	svg_histogram.selectAll('rect').remove()
+	svg_histogram.selectAll('g').remove()
 
-	var y_scale = d3.scale.linear().domain([d3.min(values_values), d3.max(values_values)]).range([0, height]);
-	var x_scale = d3.scale.ordinal().domain(values_keys).rangeRoundPoints([0,width])
+		// input
+	var data_sorted = Object.keys(data).map(function(d) {return [d, data[d][key]]})
+	.sort(function(a,b){return(b[1]-a[1])})
+	var keys = data_sorted.map(function(d) { return d[0]})
+	var values = data_sorted.map(function(d) { return d[1]})
 
+	var height = 75;
+	var width = 400;
+	var bar_width = width/92;
 
-	//define svg & g 
-	var svg = d3.select('#histogram')
-		.append('svg')
-		.attr('width', width)
-		.attr('height', height)
-	var g = svg.append('g')
+	//define scales 
+	var y_scale = d3.scale.linear().domain([d3.min(values), d3.max(values)]).range([0, height]);
+	var x_scale = d3.scale.ordinal().domain(keys).rangeRoundPoints([0,width])
 
-	var bars = g.selectAll('g')
-		.data(values_keys)
+	var bars = svg_histogram.selectAll('g')
+		.data(Object.keys(data))
 		.enter()
-		.append('div')
+		.append('rect')
 		.classed('bin', true)
 		.style('position', 'relative')
-		.style('x', function(key) { return x_scale(key)})
-		.style('width', 20)
+		.style('x', function(d) { return x_scale(d)})
+		.style('y', function(d) { return (height - y_scale(data[d][key])) })
+		.style('height', function(d){ return y_scale((data[d][key]))})
+		.style('width', bar_width)
 		.style('color', 'black')
-		.style('height', function(d){return y_scale(data[d])})
-		.style('height', function(key){ return y_scale(data[key])})
-		.attr('transform', "translate('0', '0')")
-		.attr('transform-origin', '50% 50%')
+	
+}
 
+function piechart(data, svg_piechart, key ) {
+
+	// svg_piechart.selectAll().remove()
+	var height = 150;
+	var width = 300;
+	var radius = Math.min(height, width)/2;
+
+	// data
+	var data = [34,64,22];
+
+	var length = Math.min(data);
+
+	// color scale
+	var color_scale = d3.scale.ordinal().range([1, 64]).range(["#FF0000", "#009933" , "#0000FF"]);
+
+	var color = d3.scale.linear().domain([1,length])
+      .interpolate(d3.interpolateHcl)
+      .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+
+	// define areas
+	var arc = d3.svg.arc()
+		.innerRadius(0)
+		.outerRadius(radius - 10)
+
+	var pie = d3.layout.pie()
+		.sort(null)
+		.value(function(d){ return(d)})
+	
+	var svg_piechart = svg_piechart.append('g')
+		.attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')')
+		.attr('width', width)
+		.attr('height', height)
+		.attr('class', 'piechart_container')
+
+	var g = svg_piechart.selectAll('.arc')
+		.data(pie(data))
+		.enter()
+		.append('g')
+		.attr('class', 'arc')
+
+	g.append('path')
+	.attr('d', arc)
+	.style("fill", function(d) { return(color_scale(d.data)); });
+		
 }
 
 // ****************
@@ -81,25 +133,27 @@ function histogram(data, group, key) {
 
 
 d3.json('../data/buurten_amsterdam_wsg84_stadsdelen_zip.geojson', function (data_geo) {
-	// maak groep ('g') en bind data 
-	var group = canvas.selectAll('g')
-		.data(data_geo.features)
-		.enter()
-		.append('g');
 
 	d3.json('../data/price_reviews.json', function(data_buurten) {
 
-		// KAART
-		updateData(data_buurten, group, 'price');
-		d3.select('#dropdown')
-			.on('change', function() {
-				var key = d3.select(this)[0][0].value
-				updateData(data_buurten, group, key);
 
-		});
+		d3.json('../data/property_types.json', function(property_types) {
 
-		// HISTOGRAM
-		histogram(data_buurten, group, 'price');
+			// Dropdown
+			d3.select('#dropdown')
+				.on('change', function() {
+					var key = d3.select(this)[0][0].value
+
+					kaart(data_buurten, data_geo, svg_kaart, key);
+					histogram(data_buurten,svg_histogram, key);
+
+			});
+
+			// Load
+			kaart(data_buurten, data_geo, svg_kaart, 'price');
+			histogram(data_buurten, svg_histogram, 'price');
+			piechart(data_buurten, property_types, 'price');
+			piechart(data_buurten, property_types, 'price');
 
 	});
 

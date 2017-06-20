@@ -1,20 +1,31 @@
 .container {
 	position: relative;
-	width: 900px;
-}
-
-#svg_kaart {
-	height: 600px;
+	width: 600px;
 }
 
 #histogram {
-	border: 9px;
-	border-color: black;
-	position: relative;
-	height: 500px;
-	background-color: rgba(255, 255, 0, 0.09);
+	width:600;
+	display: flex;
+	justify-content: center;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+
+#dropdown {
+	margin-left: 500px;
 }
 
 #bottom {
-	height: 200px;
+	display: flex;
+}
+
+.piechart_container {
+	background-color: #967171;
+	margin-left:200;
+	padding-left: 100px;
 }
