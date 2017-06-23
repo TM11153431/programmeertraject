@@ -29,3 +29,12 @@
 	margin-left:200;
 	padding-left: 100px;
 }
+
+.selected path {
+	fill: blue;
+}
+
+#show_data {
+	margin-left: 500px;
+	margin-top: 200px;
+}
