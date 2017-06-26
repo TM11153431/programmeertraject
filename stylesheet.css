@@ -1,28 +1,34 @@
+
+
 .container {
 	position: relative;
-	width: 600px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+#piechart {
+	order: 1;
+	display: flex;
+	flex-direction:column;
+}
+
+#map {
+	order: 2;
 }
 
 #histogram {
+	order: 3;
 	width:600;
 	display: flex;
 	justify-content: center;
 }
 
-.axis path,
-.axis line {
-	fill: none;
-	stroke: black;
-	shape-rendering: crispEdges;
-}
-
 #dropdown {
 	margin-left: 500px;
+	margin-top: 200px;
+	position: absolute;
 }
 
-#bottom {
-	display: flex;
-}
 
 .piechart_container {
 	background-color: #967171;
@@ -35,6 +41,44 @@
 }
 
 #show_data {
-	margin-left: 500px;
-	margin-top: 200px;
+	position: absolute;
+	font-size: 40px;
+	z-index: 9999;
+	margin-left:800px;
+	margin-top:20px;
+}
+
+#show_buurt {
+	position: absolute;
+	font-size: 25px;
+	z-index: 9999;
+	margin-left:800px;
+	margin-top: 300px;
+}
+
+.buurt {
+	position:relative;
+	z-index: -1;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+
+.polylines{
+	opacity: 1;
+	stroke: black;
+	stroke-width: 1px;
+	fill: none;
+}
+
+select {
+	background-color: white;
+	border: 0;
+	font-size: 40px;
+	margin-top:200px;
+	position: relative;
 }
