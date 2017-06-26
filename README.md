@@ -29,6 +29,8 @@ De kaart 'Amsterdam' en 'histogram' laten dezelfde data zien. De piecharts aan d
 ## MVP:
 Minimaal de kaar van Amsterdam, de histogram en de twee Piecharts alleen gelinked aan elkaar en interactief. Oftewel de minimale eisen voor de opdracht. Extra is meer data toevoegen en de visualisatie zelf interessanter maken qua interactiviteit of uiterlijk. 
 
+[![BCH compliance](https://bettercodehub.com/edge/badge/punktuurr/programmeertraject?branch=master)](https://bettercodehub.com/)
+
 ![alt](images/IMG_2075.JPG)
 
 
