@@ -1,4 +1,26 @@
+body {
+	background-color: rgba(0, 0, 0, 0.1);
+	/* background-image: url('../images/achtergrond.jpg'); */
+	background-repeat: no-repeat;
+	/* background-attachment: fixed; */
+	background-position: 10% 20%;
+	background-size: 90%;
+	/* transform: rotate(90deg); */
+}
 
+h1 {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+	margin-bottom: -60px;
+}
+
+.selectbox {
+	position: absolute;
+	margin-left: 1025px;
+	margin-top: 377px;
+	font-size: 30px;
+}
 
 .container {
 	position: relative;
@@ -10,10 +32,20 @@
 	order: 1;
 	display: flex;
 	flex-direction:column;
+	margin-top: 100px;
+	margin-left: 107px;
+	margin-right: -76px;
 }
 
 #map {
 	order: 2;
+	margin-top: 100px;
+}
+
+title {
+	font-size: 50px;
+	position: relative;
+	width: 100%;
 }
 
 #histogram {
@@ -21,14 +53,18 @@
 	width:600;
 	display: flex;
 	justify-content: center;
+	margin-top: 150px;
+	margin-left: -133px;
 }
 
-#dropdown {
-	margin-left: 500px;
-	margin-top: 200px;
-	position: absolute;
+#piechart1, #piechart2 {
+	height: 200px;
+	overflow: visible;
 }
 
+#piechart2 {
+	margin-top: 51px;
+}
 
 .piechart_container {
 	background-color: #967171;
@@ -42,18 +78,18 @@
 
 #show_data {
 	position: absolute;
-	font-size: 40px;
+	font-size: 60px;
 	z-index: 9999;
-	margin-left:800px;
-	margin-top:20px;
+	margin-left: 817px;
+	margin-top: 126px;
 }
 
 #show_buurt {
 	position: absolute;
-	font-size: 25px;
+	font-size: 15px;
 	z-index: 9999;
-	margin-left:800px;
-	margin-top: 300px;
+	margin-left: 370px;
+	margin-top: 60px;
 }
 
 .buurt {
@@ -68,6 +104,10 @@
 	shape-rendering: crispEdges;
 }
 
+#map svg {
+	/* padding-left: 50px; */
+}
+
 .polylines{
 	opacity: 1;
 	stroke: black;
@@ -78,7 +118,29 @@
 select {
 	background-color: white;
 	border: 0;
-	font-size: 40px;
+	font-size: 36px;
 	margin-top:200px;
 	position: relative;
 }
+
+#dropdown {
+	margin-left: 680px;
+	margin-top: 198px;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+#checkmark {
+	margin-left: 680px;
+	margin-top: 230px;
+	position: absolute;
+}
+
+#house-icon {
+	width: 50px;
+	height: auto;
+	position: absolute;
+	margin-left: 686px;
+	margin-top: 266px;
+}
+	

@@ -8,15 +8,20 @@
 </head>
 
 <body>
+<h1>AirBNB in Amsterdam </h1>
 <div class = "container">
 	<div id = "map">
-		<select id ='dropdown'>
+		<select id ='dropdown' class='selectpicker'>
 		  <option value="number_of_reviews">Number of reviews</option>
-		  <option value="price">Price/option>
+		  <option value="price">Price</option>
 		  <option value="review_scores_rating">Review scores rating</option>
 		  <option value="reviews_per_month">reviews per month</option>
 		</select>
 	</div>
+
+	<form action="/action_page.php" method="get" class ='selectbox'>
+  		<input type="checkbox" name="vehicle" value="Bike"> Leegstand<br>
+	</form>
 
 	<div id = "histogram">
 	</div>
