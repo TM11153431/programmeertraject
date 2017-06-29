@@ -6,7 +6,7 @@ De app geeft een beter inzicht in hoe AirBNB zich in Amsterdam heeft geplaatst. 
 
 Leegstand? Ik heb gekozen om een willekeurige andere dataset toe te voegen aan de visualisatie. Waar je eerst enkel informatie over AirBNB krijgt zie je nu ook informatie over de leegstand in Amsterdam. Dit is niet de leegstand van de kamers maar leegstand in het algemeen. 
 
-![alt](images/inleiding.jpg)
+![alt](images/inleiding.png)
 
 ## Design
 
@@ -72,7 +72,7 @@ Vervolgens op het einde vind je de default load waarin alle functies verantwoord
 
 ### kaart Amsterdam
 
-![alt](close-upmap)
+![alt](close-upmap.png)
 
 Hier heb ik gekozen voor een simpele choropleth. Een kleurenscale met de kleur blauw aangezien airBNB ook voor deze stijl heeft gekozen bij hun eigen design waaronder bijvoorbeeld hun logo. Edit: blijkt dus niet zo te zijn, dacht van wel. Verder heb ik ervoor gekozen om de mouseover data linksboven en rechtsboven te laten zien. Ik had ook kunnen kiezen voor een mouseover in de buurt van de muis zelf met beide data soorten bij elkaar.
 
@@ -82,20 +82,20 @@ Verbeterpunt: ik heb gekozen voor de kleur wit om te laten zien dat er geen data
 
 ### histogram
 
-![alt](histogram)
+![alt](histogram.png)
 
 Zelfde als de kaart. Waar de kaart zich vooral richt op de plaats geeft de histogram een duidelijke weergave tussen het verloop van laag en hoog. Interessante details die naar voren komen die in de kaart minder goed te zien zijn is bijvoorbeeld dat wanneer je kijkt naar het aantal reviews per buurtcombinatie, de buurt met de meeste reviews een aantal heeft van in de 16 000 en een buurt met de minste er maar 3 heeft. Ik denk een duidelijke conclusie die je hieruit kan trekken aan de hand van ook de kaart is dat a) veel activiteit is binnen het centrum oftewel hier dichter bij het centrum hoe drukker b) de verschillen de tussen de twee uiterste heel erg hoog is. 
 
 ### leegstand
 
-![alt](leegstand)
+![alt](leegstand.png)
 
 Gekozen hiervoor is om gebruikt te maken van een sqrt scale, voor een betere weergave van de data. Eerst had ik hier een normale radius scale maar dat was onduidelijk.
 
 
 ### piechart
 
-![alt](piechart)
+![alt](piechart.png)
 
 Piecharts hebeen kleuren met veel contrast. Daarnaast wordt elke kleur aangegeven met wat het is door middel van een pijl. Helaas gaat dit vaker goed dan fout en is niet alle data duidelijk te lezen. Dit had ik kunnen oplossen door middel van een legenda. 
 
